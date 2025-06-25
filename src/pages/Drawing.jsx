@@ -51,15 +51,7 @@ export default function Drawing() {
               key={r.id}
               onMouseEnter={() => setHoverId(r.id)}
               onMouseLeave={() => setHoverId(null)}
-              onClick={() =>
-                alert(
-                  `성공:\nmap정보 = ${JSON.stringify(
-                    mapModel,
-                    null,
-                    2
-                  )}\nroom정보 = ${JSON.stringify(r, null, 2)}`
-                )
-              }
+              onClick={() => alert(`room 정보\n ${JSON.stringify(r, null, 2)}`)}
               style={{
                 position: "absolute",
                 top: r.topLeft[0] * cellSize,
