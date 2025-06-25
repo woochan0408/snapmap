@@ -70,7 +70,7 @@ export default function Drawing() {
                 transition: "border-color .15s",
               }}
             >
-              room&nbsp;{r.id}
+              R&nbsp;{r.id}
             </div>
           );
         })}
