@@ -42,7 +42,7 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title">기능을 살펴보세요</h2>
           <div className="features-grid">
-            <div className="feature-card card fade-in-up">
+            <div className="feature-card card fade-in-up" onClick={() => navigate("/drawing")}>
               <div className="feature-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="var(--primary-color)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -53,12 +53,6 @@ export default function Home() {
               <p className="feature-description">
                 도면을 클릭하여 해당 위치의 사진을 확인할 수 있어요.
               </p>
-              <button 
-                className="feature-button btn btn-secondary"
-                onClick={() => navigate("/drawing")}
-              >
-                시작하기
-              </button>
             </div>
 
             <div className="feature-card card fade-in-up">
@@ -72,9 +66,6 @@ export default function Home() {
               <p className="feature-description">
                 사용자 조건에 맞춰 이미지 필터링이나 보기 조건을 설정할 수 있어요.
               </p>
-              <button className="feature-button btn btn-secondary">
-                설정하기
-              </button>
             </div>
           </div>
         </div>

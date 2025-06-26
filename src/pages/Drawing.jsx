@@ -106,24 +106,34 @@ export default function Drawing() {
     );
   }
 
-  const { cellSize, rooms } = mapModel;
+  const { rooms } = mapModel;
+
+  // 화면에 맞게 도면 크기 계산
+  const availableWidth = viewportW - 100; // 패딩 고려
+  const availableHeight = viewportH - 180; // 헤더와 패딩 고려
+
+  const cellSizeByWidth = availableWidth / mapModel.colCount;
+  const cellSizeByHeight = availableHeight / mapModel.rowCount;
+  const cellSize = Math.min(
+    cellSizeByWidth,
+    cellSizeByHeight,
+    mapModel.cellSize
+  );
+
+  const mapWidth = cellSize * mapModel.colCount;
+  const mapHeight = cellSize * mapModel.rowCount;
+
   const containerStyle = {
     position: "relative",
-    width: cellSize * mapModel.colCount,
-    height: cellSize * mapModel.rowCount,
+    width: mapWidth,
+    height: mapHeight,
+    margin: "0px auto",
   };
 
   return (
     <MapContext.Provider value={mapModel}>
       <div className="drawing-page">
         <div className="drawing-container">
-          <div className="drawing-header">
-            <h1 className="drawing-title">도면 열람</h1>
-            <p className="drawing-description">
-              각 방을 클릭하여 해당 위치의 사진을 확인하세요
-            </p>
-          </div>
-          
           <div className="map-wrapper">
             <div className="map-container" style={containerStyle}>
               {rooms.map((r) => {
@@ -133,7 +143,7 @@ export default function Drawing() {
                 return (
                   <div
                     key={r.id}
-                    className={`room ${hasDefective ? 'defective' : 'normal'}`}
+                    className={`room ${hasDefective ? "defective" : "normal"}`}
                     onMouseEnter={() => setHoverId(r.id)}
                     onMouseLeave={() => setHoverId(null)}
                     onClick={() => handleRoomClick(r)}
@@ -144,15 +154,13 @@ export default function Drawing() {
                       height: r.height * cellSize,
                     }}
                   >
-                    {hasDefective && (
-                      <span className="room-warning">⚠</span>
-                    )}
+                    {hasDefective && <span className="room-warning">⚠</span>}
                     R&nbsp;{r.id}
                   </div>
                 );
               })}
             </div>
-            
+
             {/* 범례 */}
             <div className="map-legend">
               <div className="legend-item">
@@ -169,59 +177,70 @@ export default function Drawing() {
 
         {/* 룸 정보 모달 */}
         {selectedRoom && !showImageModal && (
-          <div className="room-modal-overlay">
-            <div className="room-modal">
-              <h3>Room {selectedRoom.id}</h3>
-              
+          <div
+            className="room-modal-overlay"
+            onClick={() => setSelectedRoom(null)}
+          >
+            <div className="room-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3>Room {selectedRoom.id}</h3>
+                <button
+                  className="close-button"
+                  onClick={() => setSelectedRoom(null)}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M18 6L6 18M6 6L18 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
               <div className="room-stats">
-                <div className="stat-card safe">
+                <div
+                  className={`stat-card safe ${
+                    selectedRoom.safeCount === 0 ? "disabled" : ""
+                  }`}
+                  onClick={() =>
+                    selectedRoom.safeCount > 0 && handleShowImages("safe")
+                  }
+                >
                   <div className="stat-number">{selectedRoom.safeCount}</div>
                   <div className="stat-label">정상 사진</div>
                 </div>
-                <div className="stat-card defective">
-                  <div className="stat-number">{selectedRoom.defectiveCount}</div>
+                <div
+                  className={`stat-card defective ${
+                    selectedRoom.defectiveCount === 0 ? "disabled" : ""
+                  }`}
+                  onClick={() =>
+                    selectedRoom.defectiveCount > 0 &&
+                    handleShowImages("defective")
+                  }
+                >
+                  <div className="stat-number">
+                    {selectedRoom.defectiveCount}
+                  </div>
                   <div className="stat-label">불량 사진</div>
                 </div>
               </div>
-              
-              <div className="room-actions">
-                <button
-                  className="action-button safe"
-                  onClick={() => handleShowImages("safe")}
-                  disabled={selectedRoom.safeCount === 0}
-                >
-                  정상 사진 보기
-                </button>
-                <button
-                  className="action-button defective"
-                  onClick={() => handleShowImages("defective")}
-                  disabled={selectedRoom.defectiveCount === 0}
-                >
-                  불량 사진 보기
-                </button>
-              </div>
-              
-              <button
-                className="close-button"
-                onClick={() => setSelectedRoom(null)}
-              >
-                닫기
-              </button>
             </div>
           </div>
         )}
 
-      {/* 이미지 뷰어 모달 */}
-      {showImageModal && (
-        <ImageModal
-          images={currentImages}
-          currentIndex={currentImageIndex}
-          onClose={() => setShowImageModal(false)}
-          onPrev={prevImage}
-          onNext={nextImage}
-          roomId={selectedRoom.id}
-          imageType={imageType}
-        />
+        {/* 이미지 뷰어 모달 */}
+        {showImageModal && (
+          <ImageModal
+            images={currentImages}
+            currentIndex={currentImageIndex}
+            onClose={() => setShowImageModal(false)}
+            onPrev={prevImage}
+            onNext={nextImage}
+            roomId={selectedRoom.id}
+            imageType={imageType}
+          />
         )}
       </div>
     </MapContext.Provider>

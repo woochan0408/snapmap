@@ -20,20 +20,6 @@ export default function Header() {
           <span className="logo-text">AUTO MAP</span>
         </div>
         
-        <nav className="nav-section">
-          <button 
-            className={`nav-button ${location.pathname === "/" ? "active" : ""}`}
-            onClick={() => navigate("/")}
-          >
-            홈
-          </button>
-          <button 
-            className={`nav-button ${location.pathname === "/drawing" ? "active" : ""}`}
-            onClick={() => navigate("/drawing")}
-          >
-            도면 열람
-          </button>
-        </nav>
       </div>
     </header>
   );

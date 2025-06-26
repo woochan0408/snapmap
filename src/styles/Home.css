@@ -6,8 +6,8 @@
 /* 히어로 섹션 */
 .hero-section {
   background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #d1e7ff 100%);
-  padding: 6rem 2rem;
-  min-height: 80vh;
+  padding: 2rem 2rem;
+  min-height: 40vh;
   display: flex;
   align-items: center;
   position: relative;
@@ -15,20 +15,21 @@
 }
 
 .hero-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230D5EA6' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230D5EA6' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+    repeat;
   z-index: 0;
 }
 
 .hero-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -39,19 +40,19 @@
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: var(--primary-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .hero-description {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--gray-600);
-  margin-bottom: 3rem;
-  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 .hero-cta {
@@ -64,13 +65,18 @@
 }
 
 .hero-cta::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.6s;
 }
 
@@ -86,8 +92,8 @@
 }
 
 .character-image {
-  max-width: 100%;
-  max-height: 400px;
+  max-width: 80%;
+  max-height: 250px;
   filter: drop-shadow(0 10px 30px rgba(13, 94, 166, 0.2));
 }
 
@@ -106,14 +112,18 @@
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-yellow));
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--accent-yellow)
+  );
   border-radius: 2px;
 }
 
@@ -135,13 +145,17 @@
 }
 
 .feature-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-yellow));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--accent-yellow)
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -221,11 +235,11 @@
     gap: 3rem;
     text-align: center;
   }
-  
+
   .hero-title {
     font-size: 3rem;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -234,38 +248,42 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 4rem 1rem;
-    min-height: 70vh;
+    padding: 1.5rem 1rem;
+    min-height: 35vh;
   }
-  
+
+  .hero-content {
+    gap: 1.5rem;
+  }
+
   .hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
   }
-  
+
   .hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
   }
-  
+
   .hero-cta {
     font-size: 1rem;
     padding: 0.875rem 1.75rem;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
-  
+
   .character-image {
-    max-height: 300px;
+    max-height: 200px;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .feature-card {
     padding: 2rem 1.5rem;
   }
@@ -275,15 +293,15 @@
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .hero-description {
     font-size: 1rem;
   }
-  
+
   .section-title {
     font-size: 1.75rem;
   }
-  
+
   .feature-card {
     padding: 1.5rem 1rem;
   }
