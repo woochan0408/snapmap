@@ -15,11 +15,16 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-container">
-        <div className="logo-section" onClick={handleLogoClick}>
-          <img src="/icon.png" alt="AutoMap Logo" className="logo-icon" />
-          <span className="logo-text">AUTO MAP</span>
-        </div>
-        
+        <img
+          src="./icon.png"
+          alt="AutoMap Logo"
+          className="logo-icon"
+          style={{ width: 48, height: 48, cursor: "pointer" }}
+          onClick={handleLogoClick}
+        />
+        <span className="logo-text" onClick={handleLogoClick}>
+          AUTO MAP
+        </span>
       </div>
     </header>
   );
