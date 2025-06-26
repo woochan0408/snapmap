@@ -29,7 +29,7 @@
 .hero-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 7rem;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -92,8 +92,10 @@
 }
 
 .character-image {
-  max-width: 80%;
-  max-height: 250px;
+  width: 350px;
+  max-width: none;
+  height: auto;
+  max-height: 400px;
   filter: drop-shadow(0 10px 30px rgba(13, 94, 166, 0.2));
 }
 
@@ -232,7 +234,7 @@
 @media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 4rem;
     text-align: center;
   }
 
@@ -253,7 +255,7 @@
   }
 
   .hero-content {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .hero-title {
@@ -276,7 +278,8 @@
   }
 
   .character-image {
-    max-height: 200px;
+    width: 220px;
+    max-height: 220px;
   }
 
   .features-grid {
